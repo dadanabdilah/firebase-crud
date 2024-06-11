@@ -5,16 +5,23 @@ import java.io.Serializable;
 public class Dosen implements Serializable {
     private String nik;
     private String nama;
-    private String ja;
+    private String jabatan;
     private String key;
 
     public Dosen() {
     }
 
-    public Dosen(String nik, String nama, String ja) {
+    public Dosen(String nik, String nama, String jabatan) {
         this.nik = nik;
         this.nama = nama;
-        this.ja = ja;
+        this.jabatan = jabatan;
+    }
+
+    public Dosen(String nik, String nama, String jabatan, String key) {
+        this.nik = nik;
+        this.nama = nama;
+        this.jabatan = jabatan;
+        this.key = key;
     }
 
     public String getNik() {
@@ -33,12 +40,12 @@ public class Dosen implements Serializable {
         this.nama = nama;
     }
 
-    public String getJa() {
-        return ja;
+    public String getJabatan() {
+        return jabatan;
     }
 
-    public void setJa(String ja) {
-        this.ja = ja;
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
     }
 
     public String getKey() {
@@ -51,7 +58,6 @@ public class Dosen implements Serializable {
 
     @Override
     public String toString() {
-        return " " + nik + " " + nama + " " + ja;
+        return " " + nik + " " + nama + " " + jabatan;
     }
 }
-

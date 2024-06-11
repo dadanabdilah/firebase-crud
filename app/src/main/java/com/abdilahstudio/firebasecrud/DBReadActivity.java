@@ -51,7 +51,7 @@ public class DBReadActivity extends AppCompatActivity {
         /**
          * Mengambil data dari Firebase Realtime DB
          */
-        database.child("dosen").addValueEventListener(new ValueEventListener() {
+        database.child("dosens").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 /**

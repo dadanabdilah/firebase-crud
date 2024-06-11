@@ -46,7 +46,7 @@ public class DBCreateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!isEmpty(etNik.getText().toString()) && !isEmpty(etNama.getText().toString())) {
                     Log.d(TAG, "Submit data...");
-                    submitDosen(new Dosen(etNik.getText().toString(), etNama.getText().toString(), etJa.getSelectedItem().toString()));
+                    submitDosen(new Dosen(etNik.getText().toString(), etNama.getText().toString(), etJa.getSelectedItem().toString(), database.push().getKey()));
                 } else {
                     Snackbar.make(btSubmit, "Data Dosen tidak boleh kosong", Snackbar.LENGTH_LONG).show();
                 }
@@ -61,7 +61,7 @@ public class DBCreateActivity extends AppCompatActivity {
     private void submitDosen(Dosen dosen) {
         Log.d(TAG, "Submit dosen...");
         Log.d(TAG, "Data dosen : " + dosen.toString());
-        database.child("dosen").push().setValue(dosen)
+        database.child("dosens").child(dosen.getKey()).setValue(dosen)
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

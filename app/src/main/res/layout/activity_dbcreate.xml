@@ -9,10 +9,13 @@
     android:padding="10dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="TAMBAH DATA DOSEN" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="TAMBAH DATA DOSEN"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/nik"
@@ -38,6 +41,7 @@
         android:id="@+id/bt_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Submit" />
 
 </LinearLayout>
