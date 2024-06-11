@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,10 +46,9 @@ public class DBCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isEmpty(etNik.getText().toString()) && !isEmpty(etNama.getText().toString())) {
-                    Log.d(TAG, "Submit data...");
                     submitDosen(new Dosen(etNik.getText().toString(), etNama.getText().toString(), etJa.getSelectedItem().toString(), database.push().getKey()));
                 } else {
-                    Snackbar.make(btSubmit, "Data Dosen tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                    Toast.makeText( DBCreateActivity.this, "Data Dosen tidak boleh kosong", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -65,8 +65,7 @@ public class DBCreateActivity extends AppCompatActivity {
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Data berhasil ditambahkan");
-                        Snackbar.make(findViewById(R.id.bt_submit), "Data berhasil ditambahkan", Snackbar.LENGTH_LONG).show();
+                        Toast.makeText( DBCreateActivity.this, "Data berhasil ditambahkan", Toast.LENGTH_LONG).show();
                         etNik.setText("");
                         etNama.setText("");
                     }
@@ -74,7 +73,7 @@ public class DBCreateActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e(TAG, "Error ", e);
-                        Snackbar.make(findViewById(R.id.bt_submit), "Data gagal ditambahkan: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                        Toast.makeText( DBCreateActivity.this, "Data gagal ditambahkan: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

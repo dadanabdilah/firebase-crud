@@ -1,7 +1,5 @@
-// Mengimpor pustaka yang diperlukan
 package com.abdilahstudio.firebasecrud;
 
-// Mengimpor kelas-kelas yang dibutuhkan
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,20 +20,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
-// Deklarasi kelas AdapterDosenRecyclerView
 public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenRecyclerView.ViewHolder> {
     private ArrayList<Dosen> daftarDosen;
     private Context context;
     private DatabaseReference databaseReference;
 
-    // Konstruktor kelas AdapterDosenRecyclerView
     public AdapterDosenRecyclerView(ArrayList<Dosen> dosens, Context ctx) {
         daftarDosen = dosens;
         context = ctx;
         databaseReference = FirebaseDatabase.getInstance().getReference("dosens");
     }
 
-    // Deklarasi kelas ViewHolder
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNama, tvNik, tvJabatan;
         Button btnUpdate, btnHapus;
@@ -60,7 +55,7 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
         return new ViewHolder(v);
     }
 
-    // Metode untuk mengikat data ke ViewHolder
+    // Metode untuk menampilkan data ke ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Dosen dosen = daftarDosen.get(holder.getAdapterPosition());
@@ -90,27 +85,25 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
         return daftarDosen.size();
     }
 
-    // Metode untuk menampilkan dialog pembaruan data dosen
+    // Metode untuk menampilkan dialog update data dosen
     private void showUpdateDialog(final Dosen dosen) {
         // Membuat dialog baru
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_update_dosen);
         dialog.setTitle("Update Dosen");
 
-        // Mendapatkan referensi ke elemen-elemen UI dalam dialog
         final EditText etNik = dialog.findViewById(R.id.et_nik);
         final EditText etNama = dialog.findViewById(R.id.et_nama);
         final Spinner etJabatan = dialog.findViewById(R.id.et_jabatan);
         Button btnSave = dialog.findViewById(R.id.btn_save);
 
-        // Mengisi nilai ke EditTexts
         etNik.setText(dosen.getNik());
         etNama.setText(dosen.getNama());
 
-        // Mendapatkan array jabatan dari sumber daya
+        // Mendapatkan array jabatan
         String[] jabatanArray = context.getResources().getStringArray(R.array.JA);
 
-        // Mencari indeks jabatan saat ini dalam array
+        // Mencari indeks jabatan berdasarkan data dosen
         int jabatanIndex = -1;
         for (int i = 0; i < jabatanArray.length; i++) {
             if (jabatanArray[i].equals(dosen.getJabatan())) {
@@ -119,12 +112,12 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
             }
         }
 
-        // Menetapkan pilihan spinner ke indeks
+        // Megnatur pilihan spinner ke indeks
         if (jabatanIndex != -1) {
             etJabatan.setSelection(jabatanIndex);
         }
 
-        // Menetapkan tindakan klik tombol Simpan
+        // Metode saat klik tombol Simpan
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +145,7 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
         }
     }
 
-    // Metode untuk menampilkan dialog penghapusan data dosen
+    // Metode untuk menampilkan dialog hapus data dosen
     private void showDeleteDialog(final Dosen dosen, final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Hapus Dosen");
@@ -167,15 +160,7 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
         builder.show();
     }
 
-    // Metode untuk mengatur lebar dialog
-    private void setDialogWidth(Dialog dialog) {
-        Window window = dialog.getWindow();
-        if (window != null) {
-            window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-    }
-
-    // Metode untuk memperbarui data dosen di database Firebase
+    // Metode untuk update data dosen di database Firebase
     private void updateDosen(String key, String nik, String nama, String jabatan) {
         DatabaseReference ref = databaseReference.child(key);
 
@@ -185,7 +170,7 @@ public class AdapterDosenRecyclerView extends RecyclerView.Adapter<AdapterDosenR
                 .addOnFailureListener(e -> Toast.makeText(context, "Gagal memperbarui dosen", Toast.LENGTH_SHORT).show());
     }
 
-    // Metode untuk menghapus data dosen dari database Firebase
+    // Metode untuk hapus data dosen dari database Firebase
     private void deleteDosen(String key, final int position) {
         DatabaseReference ref = databaseReference.child(key);
         ref.removeValue()
