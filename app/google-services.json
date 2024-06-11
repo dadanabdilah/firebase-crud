@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "513285739221",
+    "firebase_url": "https://fir-crud-b9ca8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fir-crud-b9ca8",
+    "storage_bucket": "fir-crud-b9ca8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513285739221:android:b15cef8a07dad6ee80885c",
+        "android_client_info": {
+          "package_name": "com.abdilahstudio.firebasecrud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrqXTS6n3HOl_uvsg7rdGfzmIbH7hPA_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
